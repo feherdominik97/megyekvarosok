@@ -8,8 +8,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/counties', [CountyController::class, 'index']);
-Route::get('/county/{id}/cities', [CountyController::class, 'getCitiesOfCounty']);
-Route::post('/city', [CityController::class, 'store']);
-Route::post('/city', [CityController::class, 'update']);
-Route::delete('/city', [CityController::class, 'destroy']);
+Route::controller(CountyController::class)->group(function () {
+    Route::get('/counties', 'index');
+    Route::get('/counties/{id}/cities', 'getCitiesOfCounty');
+});
+
+Route::controller(CityController::class)->group(function () {
+    Route::prefix('cities')->group(function () {
+        Route::post('', 'store');
+        Route::prefix('{id}')->group(function (){
+            Route::get('', 'show');
+            Route::post('', 'update');
+            Route::delete('', 'destroy');
+        });
+    });
+});
+

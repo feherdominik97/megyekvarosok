@@ -1,3 +1,31 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.icon::after {
+    content: "";
+    display: block;
+    height: 1.5em;
+    width: 1.5em;
+    background-position: initial;
+    background-size: initial;
+    background-repeat: initial;
+    position: relative;
+    left: 12%;
+}
+
+.pencil::after {
+    background-image: url("../svg/pencil.svg");
+}
+
+.plus::after {
+    background-image: url("../svg/plus.svg");
+}
+
+.trash::after {
+    background-image: url("../svg/trash.svg");
+}
+
+.x::after {
+    background-image: url("../svg/x.svg");
+}

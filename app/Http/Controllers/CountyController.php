@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\City;
 use App\Models\County;
-use App\Http\Requests\StoreCountyRequest;
-use App\Http\Requests\UpdateCountyRequest;
 
 class CountyController extends Controller
 {
@@ -17,7 +15,7 @@ class CountyController extends Controller
         return County::all()->toArray();
     }
 
-    public function getCitiesOfCounty($id) {
+    public static function getCitiesOfCounty($id) {
         return City::query()->where('countyId', $id)->get()->toArray();
     }
 }
