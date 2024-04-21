@@ -4,26 +4,28 @@
         select(v-model="selected" @change="getCitiesOfCounty")
             option(disabled value="") Válassz megyét!
             option(v-for="county in counties" :value="county.id") {{county.name}}
-        label Új város:
-        div(:class="$style.addBox")
-            input(v-model="newCity")
-            button( @click="addCity")
-                i.icon.plus
+        div(v-if="selected")
+            label Új város:
+            div(:class="$style.addBox")
+                input(v-model="newCity")
+                button( @click="addCity")
+                    i.icon.plus
     div(:class="$style.data" v-if="selected")
         label Megye: {{ selectedCountyName }}
-        label Városok:
-        ul
-            li(v-for="city in cities")
-                div(:class="$style.inputBox" v-if="city.inputVisible")
-                    input(v-model="city.name")
-                    div(:class="$style.inputButtons")
-                        button(@click="deleteCity(city.id)")
-                            i.icon.trash
-                        button(@click="modifyCity(city)")
-                            i.icon.pencil
-                        button(class="$stlye.hideButton" @click="hideInput(city)")
-                            i.icon.x
-                div(:class="$style.cityName" @click="showInput(city)" v-else) {{ city.name }}
+        div(v-if="cities.length")
+            label Városok:
+            ul
+                li(v-for="city in cities")
+                    div(:class="$style.inputBox" v-if="city.inputVisible")
+                        input(v-model="city.name")
+                        div(:class="$style.inputButtons")
+                            button(@click="deleteCity(city.id)")
+                                i.icon.trash
+                            button(@click="modifyCity(city)")
+                                i.icon.pencil
+                            button(class="$stlye.hideButton" @click="hideInput(city)")
+                                i.icon.x
+                    div(:class="$style.cityName" @click="showInput(city)" v-else) {{ city.name }}
 </template>
 
 <script>
