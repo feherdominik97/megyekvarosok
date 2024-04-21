@@ -111,7 +111,7 @@
             @apply mt-2;
         }
         .cityName {
-         @apply w-full p-2 text-center rounded-lg hover:bg-black hover:text-white;
+         @apply w-full p-2 text-center rounded-lg hover:bg-gray-200;
         }
     }
 
